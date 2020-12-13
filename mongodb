@@ -1,0 +1,92 @@
+use university
+db.createCollection("student")
+
+db.student.insertOne(
+  {
+  _id: 1,
+  name: "zuhayr",
+  phone: 5788****
+  subjects: ['biology, 'chemistry', 'physic'],
+   })
+   
+   
+db.student.insertMany([
+  {
+  _id: 1,
+  name: "zuhayr",
+  phone: 5788****
+  subjects: ['biology, 'chemistry', 'physic']
+  },
+  {
+   _id: 1,
+  name: "zuhayr",
+  phone: 5788****
+  subjects: ['biology, 'chemistry', 'physic']
+  },
+  {
+   _id: 1,
+  name: "zuhayr",
+  phone: 5788****
+  subjects: ['biology, 'chemistry', 'physic']
+  }
+  ])
+  
+db.student.find().pretty()
+
+db.student.findOne({address: 'plaisance'})
+
+db.student.remove({_id: 1})
+
+db.student.find({module: 'big data'})
+
+db.student.find({grade: {$in: ['A', 'B']}}).pretty()
+
+>>>>>>AND
+db.student.find({$and: [{age:27}, {module:'big data'}]}).pretty() ////// db.student.find({age: 27, module: 'big data'})
+
+>>>>>>>OR
+db.student.find({$or: [{module: 'big data'}, {module: 'computer science}]})
+
+>>>>>>AND OR 
+db.student.find({grade: 'C', $or: [{module: 'big data'}, {module: 'CS'}]})
+
+>>>>>>>PROJECTION
+db.student.find( {}, {_id:1, name:1, module:1} )
+db.student.find({module: 'big data'}, {_id:1, name:1})
+
+>>>>>>UPDATE
+db.student.update({'name': 'ayesha'}, {$set: {'name': 'Raees'}})
+
+>>>>>>>>UPDATE MANY
+db.student.update({'name': 'ayesha'}, {$set: {'name': 'Raees'}}, {multi:true})
+
+>>>>>>>UPDATE A FIELD
+db.student.findOneandUpdate(
+  {_id:1},
+  { $set: {age:30, email:///}}
+  )
+  
+  
+>>>>>>>>>>>REPLACE 
+db.student.replaceOne(
+  {name: 'Raees'},
+  {name: "   ",
+  age: 18,
+  module: "   "
+  })
+  
+>>>>>>DELETE A RECORD
+db.student.update( {}, {$unset: {email: "  "}});
+
+>>>>>>greater than /// less than
+db.student.find({age: {$gt:20}})
+$gt
+$lt
+$gte
+$lte
+
+
+
+
+
+   
