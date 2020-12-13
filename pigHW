@@ -1,0 +1,29 @@
+cases = LOAD 'covidd.csv' USING PigStorage(',') AS (iso_code: chararray, continent: chararray, location: chararray, date:datetime, total_cases:int, new_cases:int, total_deaths:int, new_cases:int);
+
+one = FOREACH cases GENERATE continent, new_deaths;
+filtering= FILTER one BY continent == 'Africa';
+grouping = GROUP filtering BY continent;
+result = FOREACH grouping GENERATE group, SUM(filtering.new_deaths) AS totaldeaths;
+dump result;
+
+###q2
+
+A = GROUP cases ALL;
+B = FOREACH A GENERATE MAX(cases.new_cases) AS Up;
+C = FILTER cases BY new_cases == (int)B.Up;
+D = GROUP C BY(location, new_cases);
+E = FOREACH D GENERATE FLATTEN(group);
+DUMP E;
+
+###q3
+
+one = GROUP cases ALL;
+two = FOREACH one GENERATE MAX(cases.new_cases) AS Up;
+three = FILTER cases BY new_cases == (int)two.Up;
+four = GROUP three BY(date, location, new_cases);
+five = FOREACH four GENERATE FLATTEN(group);
+DUMP FIVE;
+
+###q4
+
+one 
