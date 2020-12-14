@@ -1,0 +1,7 @@
+question 1
+
+i) db.global.count({country: 'Mauritius'}) ///327
+ii) db.global.find({country: 'Mauritius', deaths_daily:  {$gte:2}}).pretty()
+iii) db.global.count({country: {$in: ['Mauritius', 'Madagascar', 'Seychelles']}}) ///981
+iv) db.global.find({country: 'Mauritius', recovered_daily: {$gt:1, $lt:10}}, {country:1, recovered_daily:1})
+
