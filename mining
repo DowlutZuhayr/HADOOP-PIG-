@@ -1,0 +1,3 @@
+-P 2222 *.csv maria_dev@127.0.0.1:~/
+
+python covid_mauritius.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs:///user/maria_dev/covid.csv 
